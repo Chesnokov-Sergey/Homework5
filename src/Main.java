@@ -1,65 +1,67 @@
-import java.sql.SQLOutput;
 import java.util.Arrays;
+import java.util.Scanner;
+import java.util.Random;
+
 
 public class Main {
     public static void main(String[] args) {
         // Массивы
-        // Домашнее задание 1
-        // Зададание 1
+        // Домашняя работа 2
+        // Задание 1
         System.out.println("Задание 1");
-        int[] integer = new int[]{1, 2, 3};
-        double[] fractional = {1.57, 7.654, 9.986};
-        char[] arbitrary = {'a', 'b', 'c'};
+        int[] salaryArray = generateRandomArray();
+        System.out.println(Arrays.toString(salaryArray));
+        int salaryAmounts = 0;
+        for (int salary : salaryArray) {
+            salaryAmounts += salary;
+        }
+        System.out.println("Сумма трат за месяц составила " + salaryAmounts + " рублей");
 
         // Задание 2
         System.out.println("Задание 2");
-        for (int i = 0; i < integer.length; i++) {
-            System.out.print(integer[i]);
-            if (i != integer.length - 1)
-                System.out.print(", ");
-        }
-        System.out.println();
+        int[] salaryArray2 = generateRandomArray();
+        System.out.println(Arrays.toString(salaryArray));
+        int minimumAmounts = salaryArray[0];
+        int maxAmounts = salaryArray[0];
 
-        for (int i = 0; i < fractional.length; i++) {
-            System.out.print(fractional[i]);
-            if (i != fractional.length - 1)
-                System.out.print(", ");
+        for (int salary : salaryArray2) {
+            if (salary < minimumAmounts) {
+                minimumAmounts = salary;
+            }
+            if (salary > maxAmounts) {
+                maxAmounts = salary;
+            }
         }
-        System.out.println();
-        for (int i = 0; i < arbitrary.length; i++) {
-            System.out.print(arbitrary[i]);
-            if (i != arbitrary.length - 1)
-                System.out.print(", ");
-        }
-        System.out.println();
+        System.out.println("Минимальная сумма трат за месяц составила " + minimumAmounts + " рублей " + " Максимальная сумма трат за месяц составила " + maxAmounts + " рублей");
 
         // Задание 3
         System.out.println("Задание 3");
-        for (int i = integer.length - 1; i >=0; i--) {
-            System.out.print(integer[i]);
-            if (i != 0)
-                System.out.print(", ");
+        int[] salaryArray3 = generateRandomArray();
+        System.out.println(Arrays.toString(salaryArray3));
+        int salaryAmounts2 = 0;
+        for (int salary : salaryArray3) {
+            salaryAmounts2 += salary;
         }
-        System.out.println();
-        for (int i = fractional.length - 1; i >=0 ; i--) {
-            System.out.print(fractional[i]);
-            if (i != 0)
-                System.out.print(", ");
-        }
-        System.out.println();
-        for (int i = arbitrary.length - 1; i >=0 ; i--) {
-            System.out.print(arbitrary[i]);
-            if (i != 0)
-                System.out.print(", ");
-        }
-        System.out.println();
+        double salaryAverage = (double) salaryAmounts2 / salaryArray3.length;
+        System.out.println("Средняя сумма трат за месяц составила " + salaryAverage + " рублей");
+
         // Задание 4
         System.out.println("Задание 4");
-        for (int i = 0; i < integer.length; i++) {
-            if (integer[i] % 2 != 0) {
-                integer[i]++;
-            }
+        char[] reverseFullName = {'n', 'a', 'v', 'I', ' ', 'v', 'o', 'n', 'a', 'v', 'I'};
+        for (int i = 0; i < reverseFullName.length / 2; i++) {
+            char temp = reverseFullName[i];
+            reverseFullName[i] = reverseFullName[reverseFullName.length - 1 - i];
+            reverseFullName[reverseFullName.length - 1 - i] = temp;
         }
-        System.out.println(Arrays.toString(integer));
+        System.out.println(Arrays.toString(reverseFullName));
+    }
+
+    public static int[] generateRandomArray() {
+        java.util.Random random = new java.util.Random();
+        int[] arr = new int[30];
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = random.nextInt(100_000) + 100_000;
+        }
+        return arr;
     }
 }
